@@ -3,14 +3,16 @@ import { NextRequest } from 'next/server'
 
 export async function POST(req) {
   try {
-    const evt = await verifyWebhook(req, {
-      signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET
-    });
+    // const evt = await verifyWebhook(req, {
+    //   signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET
+    // });
 
-    const { id } = evt.data;
-    const eventType = evt.type;
-    console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
-    console.log('Webhook payload:', evt.data);
+    // const { id } = evt.data;
+    // const eventType = evt.type;
+    // console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
+    // console.log('Webhook payload:', evt.data);
+    const body = await req.json();
+    console.log('raw webhook paylod',body)
 
     return new Response('Webhook received', { status: 200 });
   } catch (err) {
